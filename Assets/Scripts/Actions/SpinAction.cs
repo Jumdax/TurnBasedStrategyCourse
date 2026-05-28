@@ -8,7 +8,7 @@ public class SpinAction : BaseAction
     private float totalSpinAmount;
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (!isActive)
         {
@@ -20,15 +20,13 @@ public class SpinAction : BaseAction
         totalSpinAmount += spinAmount;
         if(totalSpinAmount >= 360f)
         {
-            isActive = false;
-            onActionComplete();
+            ActionComplete();
         }
     }
 
     public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
     {
-        this.onActionComplete = onActionComplete;
-        isActive = true;
+        ActionStart(onActionComplete);
         totalSpinAmount = 0f;
     }
 
