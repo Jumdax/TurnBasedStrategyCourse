@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5008799689398484179
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2931441620694534112}
+  m_Layer: 7
+  m_Name: ShootPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2931441620694534112
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5008799689398484179}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.011, y: 0.092, z: 0.727}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8877822674809555973}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6163220389976680727
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,6 +142,9 @@ GameObject:
   - component: {fileID: 2686475153928743279}
   - component: {fileID: -2893065950691356395}
   - component: {fileID: 8487536072444825410}
+  - component: {fileID: 2708623656673417058}
+  - component: {fileID: 484946454866902496}
+  - component: {fileID: 3767075574871234754}
   m_Layer: 7
   m_Name: Unit
   m_TagString: Untagged
@@ -181,7 +215,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b38ee5723a1e4d469bb41182edd65d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitAnimator: {fileID: 1280613847719767353}
   maxMoveDistance: 4
 --- !u!114 &-2893065950691356395
 MonoBehaviour:
@@ -207,6 +240,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc701550639824be9b824b1d795409eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2708623656673417058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8873276995045679984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9dd503f6a25c4583a27b714e3d9c374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1280613847719767353}
+  bulletProjectilePrefab: {fileID: 6823831147824739482, guid: ad22cd460f5354b80b4c77d159782119,
+    type: 3}
+  shootPointTransform: {fileID: 2931441620694534112}
+--- !u!114 &484946454866902496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8873276995045679984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bba0660c1aa7488f959551b47bc4d35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+--- !u!114 &3767075574871234754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8873276995045679984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3db50eeee4588461e90a763a49729ea8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdollPrefab: {fileID: 8873276995045679991, guid: 13e38a41991804152af3ac2265610e56,
+    type: 3}
+  originalRootBone: {fileID: 812054633210005637}
 --- !u!1001 &8873276995259056417
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -629,6 +706,12 @@ PrefabInstance:
       addedObject: {fileID: 8877822674809555973}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc494f42aedd60c4a85be02ec2b22ec4, type: 3}
+--- !u!4 &812054633210005637 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8097693169677666724, guid: dc494f42aedd60c4a85be02ec2b22ec4,
+    type: 3}
+  m_PrefabInstance: {fileID: 8873276995259056417}
+  m_PrefabAsset: {fileID: 0}
 --- !u!95 &1280613847719767353 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: -1521774772117591016, guid: dc494f42aedd60c4a85be02ec2b22ec4,
@@ -749,7 +832,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 25af05085d2957e42ac6b80b69ddd26a, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4620998167008108, guid: c25ac4fdc903e7d49a7520930673ecd6,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2931441620694534112}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c25ac4fdc903e7d49a7520930673ecd6, type: 3}
 --- !u!4 &8877822674809555973 stripped

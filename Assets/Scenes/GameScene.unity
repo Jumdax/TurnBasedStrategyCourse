@@ -185,6 +185,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UnitEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 6692069186541351254, guid: 09b8e6d3017ed47a7a86a5adfbebf519,
+        type: 3}
+      propertyPath: health
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2722,11 +2727,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Unit
-      objectReference: {fileID: 0}
-    - target: {fileID: 8873276995045679991, guid: 468a9c5a3c77e42c6b76e178c8d81a50,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8873276995045679991, guid: 468a9c5a3c77e42c6b76e178c8d81a50,
         type: 3}
