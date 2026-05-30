@@ -23,7 +23,7 @@ public class UnitActionSystem : MonoBehaviour
     {
         if (Instance != null)
         {
-            Debug.LogError("GridSystemVisual " + transform + " - " + Instance);
+            Debug.LogError("There is more than one UnitActionSystem! " + transform + " - " + Instance);
             Destroy(gameObject);
             return;           
         }
