@@ -42,8 +42,9 @@ public class Unit : MonoBehaviour
         if (newGridPosition != gridPosition)
         {
             // Unit changed Grid Position
-            LevelGrid.Instance.UnitMovedGridPosition(this, gridPosition, newGridPosition);
+            GridPosition oldGridPosition = gridPosition;
             gridPosition = newGridPosition;
+            LevelGrid.Instance.UnitMovedGridPosition(this, oldGridPosition, newGridPosition);
         }
     }
 
@@ -128,7 +129,7 @@ public class Unit : MonoBehaviour
     private void HealthSystem_OnDead(object sender, EventArgs e)
     {
         LevelGrid.Instance.RemoveUnitAtGridPosition(gridPosition, this);
-        
+
         Destroy(gameObject);
     }
 }
