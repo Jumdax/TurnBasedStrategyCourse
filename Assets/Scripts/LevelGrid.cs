@@ -9,18 +9,19 @@ public class LevelGrid : MonoBehaviour
 
     public event EventHandler OnAnyUnitMovedGridPosition;
     [SerializeField] private Transform gridDebugObjectPrefab;
-    private GridSystem gridSystem;
+    private GridSystem<GridObject> gridSystem;
     private void Awake()
     {
-                if (Instance != null)
+        if (Instance != null)
         {
             Debug.LogError(" There's more than one UnitActionSystem! " + transform + " - " + Instance);
             Destroy(gameObject);
             return;
         }
         Instance = this;
-        gridSystem = new GridSystem(10, 10, 2f);
-        gridSystem.CreateDebugObjects(gridDebugObjectPrefab);
+        gridSystem = new GridSystem<GridObject>(10, 10, 2f, 
+            (GridSystem<GridObject> g, GridPosition gridPosition) => new GridObject(g, gridPosition));
+        // gridSystem.CreateDebugObjects(gridDebugObjectPrefab);
     }
 
     public void AddUnitAtGridPosition(GridPosition gridPosition, Unit unit)
