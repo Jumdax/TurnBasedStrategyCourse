@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 7
+  version: 10
 --- !u!21 &2100000
 Material:
   serializedVersion: 8
@@ -21,7 +21,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: PolygonPrototype_Grid_05
-  m_Shader: {fileID: -6465566751694194690, guid: 692c66c4b7566f24baaabd994b0bc0d2, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 692c66c4b7566f24baaabd994b0bc0d2,
+    type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -31,7 +32,8 @@ Material:
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
-  disabledShaderPasses: []
+  disabledShaderPasses:
+  - MOTIONVECTORS
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -68,6 +70,7 @@ Material:
     - _BaseColor: {r: 0.9852941, g: 0.52715, b: 0.13040657, a: 0}
     - _Base_Color: {r: 0.98529404, g: 0.52715, b: 0.13040653, a: 0}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1
 --- !u!114 &8352801168734339449
 MonoBehaviour:
   m_ObjectHideFlags: 11
