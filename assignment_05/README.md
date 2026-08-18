@@ -5,6 +5,7 @@
 **Unity version:** 6000.4.10f1
 **Git branch:** `assignment-05-melee-action`
 **Implementation commit:** `9f0f638`
+**Pull request:** https://github.com/Jumdax/TurnBasedStrategyCourse/pull/1
 
 ## What the Agent Built
 
