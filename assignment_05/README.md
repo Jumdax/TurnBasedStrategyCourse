@@ -9,7 +9,7 @@
 ## What the Agent Built
 
 `MeleeAttackAction` — a range-1, 8-directional melee attack (`BaseAction`
-subclass) usable by both the player and enemy AI, plus a one-line fix to a
+subclass) usable by both the player and enemy AI, plus a minimal null-guard fix to a
 latent bug in `MoveAction`'s enemy-AI scoring that the new melee-only enemy
 loadout exposed.
 
@@ -60,3 +60,12 @@ simply never been exercised before because every unit always shipped with
 No dedicated melee animation, VFX, SFX, or camera presentation yet. The
 underlying gameplay action is fully functional; presentation polish was
 scoped out of the Assignment #5 MVP.
+
+## How to Run
+
+1. Open the Unity repository in Claude Code.
+2. Ensure `Docs/HOLLOWDEEP_GDD.pdf` is present.
+3. Use the workflow defined in `assignment_05/goal_oriented_coding_agent.md`.
+4. Allow the agent to inspect the GDD and `Assets/Scripts/`.
+5. Review the selected feature and authorize implementation.
+6. Open the project in Unity and manually playtest the generated feature.

@@ -9,9 +9,10 @@ minimum viable version of that gap — using the codebase's own existing
 architectural patterns, without expanding scope, and without taking any
 irreversible action (commit/push) unless explicitly told to.
 
-This is a single Claude Code agent operating directly in a Unity project
-directory. It is not a multi-agent framework — there is no crew, no
-orchestrator, and no handoff between separate agent processes. One agent
+This implementation uses Claude Code as the goal-oriented coding agent,
+operating directly in the Unity project directory. It is not a multi-agent
+framework — there is no crew, no orchestrator, and no handoff between
+separate agent processes. One agent
 reasons through the full read → compare → prioritize → implement → review
 loop in one continuous session, checking in with the developer at each
 decision point.
