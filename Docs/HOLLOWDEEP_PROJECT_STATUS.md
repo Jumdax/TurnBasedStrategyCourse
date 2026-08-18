@@ -81,6 +81,58 @@ Reference material:
 - Implementation commit: `9f0f638` — "feat: add HOLLOWDEEP melee combat action".
 - Pull request: [#1](https://github.com/Jumdax/TurnBasedStrategyCourse/pull/1) — open, not merged.
 
-## 8. Next Work
+## Existing Asset Inventory for HOLLOWDEEP
+
+Summary of a read-only inventory pass over `Assets/Synty/` and `Assets/Prefabs/`, cross-referenced against what `Unit.prefab`, `UnitEnemy.prefab`, `Wall.prefab`, `WallDoor.prefab`, and `Column.prefab` actually reference on disk.
+
+### Existing Asset Packs
+
+- **PolygonPrototype** — a greybox/blockout kit; its materials are flat color swatches (`PolygonPrototype_01`–`10`, `Wire_01`) rather than styled surfaces. This is the pack the current level is already built from: `Wall.prefab`, `WallDoor.prefab`, and `Column.prefab` all wrap meshes sourced from `PolygonPrototype/Prefabs/Buildings/Simple` (confirmed by tracing their mesh GUIDs). It also supplies `Character_Dummy_Male_01_FixedScale` — the actual mesh used by `Unit.prefab` — currently holding `SM_Prop_Rifle_01`.
+- **PolygonGeneric** — a mixed contemporary/generic-town prop pack. Its material set includes plausible dungeon-adjacent surfaces (`Generic_Brick`, `Generic_Concrete`, `Generic_Rock`, `Generic_Wood`, `Generic_Plaster`), but its prop list is dominated by modern items (aircon units, cardboard boxes, a keypad, a screen, a clock). Its `Props` folder is where the real dungeon-dressing candidates live: chests, barrels, sacks, pots, statues, skulls, chains.
+- **The current animation set is modern rifle-oriented.** `Assets/Animations/` contains only `firing rifle.fbx`, `reloading.fbx`, `rifle aiming idle.fbx`, `rifle run.fbx`, `strafe.fbx`, `walking.fbx` — no swing/attack/spellcast clip exists. `MeleeAttackAction` (Assignment #5) therefore has no matching animation to play.
+
+### MVP Asset Coverage
+
+- Floor — AVAILABLE
+- Walls — AVAILABLE
+- Corners — PARTIAL
+- Doors — AVAILABLE
+- Pillars — AVAILABLE
+- Chest / loot container — AVAILABLE
+- Torches / light sources — MISSING
+- Barrels / crates / debris — PARTIAL
+- Stairs / entrance / exit — AVAILABLE
+- Melee weapons — PARTIAL
+- Player characters — PARTIAL
+- Enemies — MISSING
+
+### Important Existing Assets
+
+- **Modular floors** — `Assets/Synty/PolygonPrototype/Prefabs/Buildings/{Simple,Polygon}/SM_Buildings_Floor_1x1_01`, `_2x2_01`, `_5x5_01` (plus `FloorAngle`, `FloorChamfered`, `FloorCurved`, `FloorHole` variants).
+- **Walls** — `Assets/Synty/PolygonPrototype/Prefabs/Buildings/{Simple,Polygon}/SM_Buildings_Wall_1x3_01` (plus 2x3/5x3, curved, chamfered, arch, window variants); richer alternate set at `Assets/Synty/PolygonGeneric/Prefabs/Base/SM_Bld_Base_Wall_*` (28 variants).
+- **`Assets/Prefabs/WallDoor.prefab`** — already live in the game, wraps `SM_Buildings_WallDoorDouble_3x3_01` (PolygonPrototype).
+- **`Assets/Prefabs/Column.prefab`** — already live in the game, wraps `SM_Buildings_Column_2x3_01` (PolygonPrototype).
+- **PolygonGeneric chest prefabs** — `Assets/Synty/PolygonGeneric/Prefabs/Props/SM_Gen_Prop_Chest_01.prefab`, `SM_Gen_Prop_Chest_02.prefab` (styled wood material).
+- **Barrels/crates/sacks** — `Assets/Synty/PolygonGeneric/Prefabs/Props/SM_Gen_Prop_Barrel_Wood_01/02/03`, `_Barrel_Metal_01/02/03`, `_Crate_01/02/03`, `_Sack_01`–`05`, `_Sack_Stack_01/02`.
+- **Sword** — `Assets/Synty/PolygonPrototype/Prefabs/Props/SM_Prop_Sword_01.prefab`.
+- **Axe** — `Assets/Synty/PolygonGeneric/Prefabs/Weapons/SM_Gen_Wep_Axe_01.prefab`.
+- **Stairs** — `Assets/Synty/PolygonGeneric/Prefabs/Base/SM_Bld_Base_Stairs_01/02`, `_Stair_Half_01`, `_Stairwell_Wall_01`; `Assets/Synty/PolygonPrototype/Prefabs/Buildings/{Simple,Polygon}/SM_Buildings_Stairs_1x1/1x2/1x3`, `RailStairs`.
+- **Existing flame/fire FX** — `Assets/Synty/PolygonGeneric/Prefabs/FX/FX_Candle_Flame_01.prefab`, `FX_Fire_01.prefab` (flame-only VFX, no holder/sconce mesh).
+
+### Highest-Priority Missing Assets
+
+1. Torch/sconce/brazier geometry
+2. Enemy/monster characters
+3. Melee attack animation / appropriate weapon presentation
+4. Fighter/Priest fantasy character visuals
+5. Dungeon decay dressing such as rubble/broken stone/cobwebs
+
+### Important Design Implication
+
+The current Unity project has sufficient structural assets to construct and test dungeon room geometry, including floors, walls, doors, pillars, stairs, and loot chests. However, it does not yet have sufficient visual assets to present a convincing HOLLOWDEEP/Shadowdark dungeon. Procedural or agent-generated room work should distinguish between structural room generation and final visual presentation.
+
+This inventory does not itself determine what Assignment #6 should build. Assignment #6 requirements must still drive the next implementation decision.
+
+## 9. Next Work
 
 Assignment #6 requirements have not yet been analyzed. Do not assume what Assignment #6 requires. Read the Assignment #6 instructions before proposing or implementing additional gameplay features.
