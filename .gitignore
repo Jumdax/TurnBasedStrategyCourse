@@ -70,3 +70,7 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# ELVTR Assignment 05 submission package output
+assignment_05/output/
+Britt_Gray_Assignment_05_Goal_Oriented_Coding_Agent.zip
