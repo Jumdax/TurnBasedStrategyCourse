@@ -167,6 +167,11 @@ Reference material:
   - These bugs were **detected and reported only — not fixed**. No gameplay-bug remediation was performed as part of this assignment.
 - The prototype remains incomplete (no full dungeon, no Light/Torch system, no downed/stabilize recovery), but its existing foundational systems (grid indexing, pathfinding neighbor selection, the action-point economy) were already sufficiently complex and testable to yield real, concrete adversarial findings.
 - Reference material in [`assignment_09/README.md`](../assignment_09/README.md), [`assignment_09/qa_report.json`](../assignment_09/qa_report.json).
+- Submission package: `/Users/brittgray/Projects/ELVTR/Britt_Gray_Assignment_09_HOLLOWDEEP_Adversarial_QA_Agent.zip`
+  - ZIP verified against the Assignment #9 PDF.
+  - ZIP contains exactly: `assignment_09/README.md`, `assignment_09/qa_report.json`, `Assets/Scripts/QA/AdversarialQATester.cs`.
+  - ZIP contains no extra Unity/project artifacts.
+  - Submission status: submitted.
 
 ## Existing Asset Inventory for HOLLOWDEEP
 
