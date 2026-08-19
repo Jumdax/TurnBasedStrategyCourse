@@ -164,7 +164,8 @@ Owns: Assignment #10 audit/documentation artifacts, specifically-assigned GDD do
 | File / path | Owner | Notes |
 |---|---|---|
 | `Assets/Scenes/GameScene.unity` (+ `.meta`, `GameScene/` subfolder) | Dungeon / Presentation Engineer | Sole default owner. Single YAML scene file — does not merge cleanly, exclusive ownership is the conflict-prevention mechanism, not git branching. |
-| Gameplay C# under `Assets/Scripts/` (excl. `QA/`, `Pipeline/`) | Unity Gameplay Engineer | Includes `Actions/`, `Grid/`, `UI/`, `Unit.cs`, `TurnSystem.cs`, `Pathfinding.cs`, `LevelGrid.cs`, `EnemyAI.cs`, etc. |
+| `Assets/Prefabs/Unit.prefab`, `Assets/Prefabs/UnitEnemy.prefab` — **visual-only** portion | Dungeon / Presentation Engineer | **Amendment (approved during Sprint 1 planning):** Presentation may change visual child objects, meshes/models, visual props (e.g. rifle → sword), materials, and presentation-only configuration on these prefabs. Presentation may **not** change gameplay scripts/components, stats, action configuration, gameplay-affecting colliders, health, movement, combat logic, or targeting on these same prefabs without a handoff to the Unity Gameplay Engineer. |
+| Gameplay C# under `Assets/Scripts/` (excl. `QA/`, `Pipeline/`); gameplay scripts/components/stats/action config/gameplay-affecting colliders on `Unit.prefab`/`UnitEnemy.prefab` | Unity Gameplay Engineer | Includes `Actions/`, `Grid/`, `UI/`, `Unit.cs`, `TurnSystem.cs`, `Pathfinding.cs`, `LevelGrid.cs`, `EnemyAI.cs`, etc. |
 | `Assets/Scripts/Pipeline/` (new) | AI Pipeline Integration Engineer | Does not exist yet; created by this role if/when needed. |
 | `Assets/Scripts/QA/` | QA / Release Engineer | Currently `AdversarialQATester.cs`. |
 | `Docs/HOLLOWDEEP_PROJECT_STATUS.md` | Lead / Orchestrator | All other agents report status to the Lead rather than editing directly. |
@@ -191,6 +192,8 @@ Owns: Assignment #10 audit/documentation artifacts, specifically-assigned GDD do
 **LANE C — EVIDENCE**: Pipeline Auditor / Documentation Agent. Runs continuously in the background inventorying what's actually happening in Lanes A/B — does not block either.
 
 **QA / Release Engineer** begins as soon as the first buildable checkpoint exists (does not wait for feature-complete) and re-runs at every subsequent major checkpoint.
+
+**Amendment (approved during Sprint 1 planning):** QA / Release Engineer is activated early, during Sprint 1, with exactly one bounded package — "Baseline Build Feasibility" — to determine whether the current clean baseline can produce a development build (WebGL preferred) *before* Checkpoint 1 is reached, in service of §15's "test WebGL early" goal. This is a scoped exception, not a general early start: QA's broader smoke/regression role still begins at Checkpoint 1 as described above.
 
 Checkpoints:
 1. **Checkpoint 0 (now):** current baseline, confirmed by this charter's §3. No verified build has been produced yet this sprint.
