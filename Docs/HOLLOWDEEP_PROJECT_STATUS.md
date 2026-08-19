@@ -117,6 +117,34 @@ Reference material:
 - No Unity gameplay integration was added; this is intentionally the minimum concept implementation required for Assignment #7.
 - Reference material in [`assignment_07/README.md`](../assignment_07/README.md).
 
+**Assignment #8 — Narrative Engine Prototype for HOLLOWDEEP (complete):** Built a standalone Python narrative-engine prototype, using the Anthropic Python SDK and Claude API directly, that roleplays a small HOLLOWDEEP crypt encounter with a visible, deterministically-updated JSON facts ledger.
+
+- Status: complete
+- Branch: `assignment-08-narrative-engine-prototype`
+- Implementation commit: `15d1ecc`
+- Pull request: [#4](https://github.com/Jumdax/TurnBasedStrategyCourse/pull/4)
+- PR base: `assignment-07-style-guide-agent`
+- PR state: OPEN, not merged
+- Implementation (`assignment_08/narrative_engine.py`):
+  - Standalone Python narrative-engine prototype using the Anthropic Python SDK and Claude API directly.
+  - No Unity integration.
+  - Uses a visible JSON facts ledger.
+  - Ledger state is updated deterministically in Python from player actions before narration is generated.
+  - Current ledger tracks: `prisoner_status`, `has_key`, `chest_opened`, `torch_rounds_remaining`.
+  - Current ledger state is supplied to Claude on every narrative turn.
+  - Conversation history is preserved across turns.
+  - Deliberately scoped to a small HOLLOWDEEP crypt encounter rather than a full narrative or game system.
+- Testing:
+  - Completed a successful 6-turn narrative test.
+  - `prisoner_status` changed chained → freed on Turn 3.
+  - `has_key` changed false → true on Turn 4.
+  - `chest_opened` changed false → true on Turn 5.
+  - `torch_rounds_remaining` changed 10 → 4 across six turns.
+  - Turn 6 narration correctly reacted to the prisoner's release on Turn 3.
+  - No state or narrative contradictions were observed across the six turns.
+  - During testing, a Claude API response containing a `ThinkingBlock` exposed an incorrect assumption that `response.content[0]` would always contain text. The implementation was corrected to select the returned text block by type, and the subsequent six-turn test completed successfully.
+- Reference material in [`assignment_08/README.md`](../assignment_08/README.md), [`assignment_08/narrative_engine.py`](../assignment_08/narrative_engine.py), [`assignment_08/requirements.txt`](../assignment_08/requirements.txt).
+
 ## Existing Asset Inventory for HOLLOWDEEP
 
 Summary of a read-only inventory pass over `Assets/Synty/` and `Assets/Prefabs/`, cross-referenced against what `Unit.prefab`, `UnitEnemy.prefab`, `Wall.prefab`, `WallDoor.prefab`, and `Column.prefab` actually reference on disk.
@@ -175,4 +203,6 @@ Assignment #6 is complete (see Section 7): a minimal GER pipeline with a circuit
 
 Assignment #7 is complete (see Section 7): a standalone LLM-backed Style Guide Agent (Generator → Evaluator → Refiner → Re-Evaluator) enforcing HOLLOWDEEP's tone, lore/terminology, and mechanical-consistency rules against generated narrative content, in PR [#3](https://github.com/Jumdax/TurnBasedStrategyCourse/pull/3). It is a standalone concept demonstration and was not integrated into Unity gameplay.
 
-Assignment #8 requirements have not yet been analyzed. Do not assume what Assignment #8 requires. Read the Assignment #8 instructions before proposing or implementing additional gameplay features.
+Assignment #8 is complete (see Section 7): a standalone Python narrative-engine prototype, using the Anthropic Python SDK and Claude API directly, roleplaying a small HOLLOWDEEP crypt encounter with a visible, deterministically-updated JSON facts ledger, in PR [#4](https://github.com/Jumdax/TurnBasedStrategyCourse/pull/4). It is a standalone concept demonstration and was not integrated into Unity gameplay.
+
+Assignment #9 requirements have not yet been analyzed. Do not assume what Assignment #9 requires. Read the Assignment #9 instructions before proposing or implementing additional gameplay features.
