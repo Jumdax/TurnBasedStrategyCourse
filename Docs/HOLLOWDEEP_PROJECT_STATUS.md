@@ -145,6 +145,29 @@ Reference material:
   - During testing, a Claude API response containing a `ThinkingBlock` exposed an incorrect assumption that `response.content[0]` would always contain text. The implementation was corrected to select the returned text block by type, and the subsequent six-turn test completed successfully.
 - Reference material in [`assignment_08/README.md`](../assignment_08/README.md), [`assignment_08/narrative_engine.py`](../assignment_08/narrative_engine.py), [`assignment_08/requirements.txt`](../assignment_08/requirements.txt).
 
+**Assignment #9 — Adversarial QA Agent for HOLLOWDEEP (complete):** Built a Unity C# adversarial QA `MonoBehaviour` that runs a bounded, deterministic test sequence live inside Play Mode against the real tactical prototype, and writes a structured JSON report of what it found.
+
+- Status: complete
+- Branch: `assignment-09-adversarial-qa-agent`
+- Implementation commit: `2b065af`
+- Pull request: [#5](https://github.com/Jumdax/TurnBasedStrategyCourse/pull/5)
+- PR base: `assignment-08-narrative-engine-prototype`
+- PR state: OPEN, not merged
+- Implementation (`Assets/Scripts/QA/AdversarialQATester.cs`):
+  - Unity C# adversarial QA `MonoBehaviour` running inside the live tactical prototype.
+  - Bounded adversarial test sequence executed in Unity Play Mode (not an infinite loop; not auto-run during normal dev play).
+  - No LLM/API used; all tests are deterministic.
+  - Tests: (1) out-of-bounds pathfinding/grid queries, (2) diagonal corner-cutting, (3) action-point bypass.
+  - Structured JSON report generated at `assignment_09/qa_report.json`, with required fields `location`, `error_type`, and `game_context` on every entry.
+- Real test results (one Unity Play Mode run):
+  - 71 total `FINDING` records, representing **3 defect classes, not 71 unique bugs**:
+    - 6 × OutOfBoundsQuery / `IndexOutOfRangeException` — e.g. `(-1,-1)`, `(-1,0)`, `(0,-1)`, `(25,0)`, `(0,25)`, `(75,75)`.
+    - 64 × DiagonalCornerCutting / `DiagonalCornerCut` — e.g. `x:0,z:0 -> x:1,z:1` while `x:0,z:1` was unwalkable.
+    - 1 × ActionPointBypass — `Unit (1)` had 0 AP and `CanSpendActionPointsToTakeAction` returned false, but `MoveAction.TakeAction()` still executed when called directly.
+  - These bugs were **detected and reported only — not fixed**. No gameplay-bug remediation was performed as part of this assignment.
+- The prototype remains incomplete (no full dungeon, no Light/Torch system, no downed/stabilize recovery), but its existing foundational systems (grid indexing, pathfinding neighbor selection, the action-point economy) were already sufficiently complex and testable to yield real, concrete adversarial findings.
+- Reference material in [`assignment_09/README.md`](../assignment_09/README.md), [`assignment_09/qa_report.json`](../assignment_09/qa_report.json).
+
 ## Existing Asset Inventory for HOLLOWDEEP
 
 Summary of a read-only inventory pass over `Assets/Synty/` and `Assets/Prefabs/`, cross-referenced against what `Unit.prefab`, `UnitEnemy.prefab`, `Wall.prefab`, `WallDoor.prefab`, and `Column.prefab` actually reference on disk.
@@ -205,4 +228,6 @@ Assignment #7 is complete (see Section 7): a standalone LLM-backed Style Guide A
 
 Assignment #8 is complete (see Section 7): a standalone Python narrative-engine prototype, using the Anthropic Python SDK and Claude API directly, roleplaying a small HOLLOWDEEP crypt encounter with a visible, deterministically-updated JSON facts ledger, in PR [#4](https://github.com/Jumdax/TurnBasedStrategyCourse/pull/4). It is a standalone concept demonstration and was not integrated into Unity gameplay.
 
-Assignment #9 requirements have not yet been analyzed. Do not assume what Assignment #9 requires. Read the Assignment #9 instructions before proposing or implementing additional gameplay features.
+Assignment #9 is complete (see Section 7): a Unity C# adversarial QA agent running live in Play Mode against the real tactical prototype, which detected and reported (but did not fix) real defects across three classes — out-of-bounds grid queries, diagonal corner-cutting, and an action-point bypass — in PR [#5](https://github.com/Jumdax/TurnBasedStrategyCourse/pull/5). No Unity gameplay code was modified or remediated as part of this assignment.
+
+Assignment #10 requirements have not yet been analyzed. Do not assume what Assignment #10 requires. Read the Assignment #10 instructions before proposing or implementing additional gameplay features.
