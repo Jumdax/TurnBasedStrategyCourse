@@ -96,6 +96,27 @@ Reference material:
 - No Unity gameplay integration was added; this is intentionally a minimum concept implementation for the assignment, not HOLLOWDEEP's final procedural dungeon-generation system.
 - Rule documented in [`Docs/HOLLOWDEEP_GDD_ADDENDUM.md`](HOLLOWDEEP_GDD_ADDENDUM.md); reference material in [`assignment_06/README.md`](../assignment_06/README.md).
 
+**Assignment #7 — Style Guide Agent for HOLLOWDEEP (complete):** Built a standalone, LLM-backed Generator → Evaluator → Refiner → Re-Evaluator pipeline that enforces HOLLOWDEEP's style guide against generated narrative content and automatically rewrites content that violates it.
+
+- Status: complete
+- Branch: `assignment-07-style-guide-agent`
+- Commit: `3e99956` — "feat: add HOLLOWDEEP style guide agent for assignment 07"
+- Pull request: [#3](https://github.com/Jumdax/TurnBasedStrategyCourse/pull/3)
+- PR base: `assignment-06-ger-pipeline`
+- PR state: OPEN, not merged
+- Implementation (`assignment_07/style_guide_agent.py`):
+  - Standalone LLM-backed Generator → Evaluator → Refiner → Re-Evaluator pipeline.
+  - Uses the installed Claude CLI (Sonnet model) through a Python `subprocess` call — no Python LLM SDK.
+  - Enforces three HOLLOWDEEP style-guide categories: (1) Grim Low Fantasy / Dread tone, (2) No Unsupported Lore or Mechanics, (3) Mechanical Consistency / Light Pressure.
+  - **Evaluator** — produces a `SCORE` and a `REASON` (not binary pass/fail).
+  - **Refiner** — automatically consumes the Evaluator's `REASON` and rewrites failing content, with no human intervention.
+- Three distinct violation categories were demonstrated. Observed test results:
+  - Tone: 2/10 → 10/10
+  - Unsupported lore/mechanics: 3/10 → 10/10
+  - Mechanical consistency / Light: 3/10 → 10/10
+- No Unity gameplay integration was added; this is intentionally the minimum concept implementation required for Assignment #7.
+- Reference material in [`assignment_07/README.md`](../assignment_07/README.md).
+
 ## Existing Asset Inventory for HOLLOWDEEP
 
 Summary of a read-only inventory pass over `Assets/Synty/` and `Assets/Prefabs/`, cross-referenced against what `Unit.prefab`, `UnitEnemy.prefab`, `Wall.prefab`, `WallDoor.prefab`, and `Column.prefab` actually reference on disk.
@@ -152,4 +173,6 @@ This inventory does not itself determine what Assignment #6 should build. Assign
 
 Assignment #6 is complete (see Section 7): a minimal GER pipeline with a circuit breaker, enforcing the Room Accessibility Rule against generated HOLLOWDEEP dungeon room grids, in PR [#2](https://github.com/Jumdax/TurnBasedStrategyCourse/pull/2). It is a standalone concept demonstration and was not integrated into Unity gameplay.
 
-Assignment #7 requirements have not yet been analyzed. Do not assume what Assignment #7 requires. Read the Assignment #7 instructions before proposing or implementing additional gameplay features.
+Assignment #7 is complete (see Section 7): a standalone LLM-backed Style Guide Agent (Generator → Evaluator → Refiner → Re-Evaluator) enforcing HOLLOWDEEP's tone, lore/terminology, and mechanical-consistency rules against generated narrative content, in PR [#3](https://github.com/Jumdax/TurnBasedStrategyCourse/pull/3). It is a standalone concept demonstration and was not integrated into Unity gameplay.
+
+Assignment #8 requirements have not yet been analyzed. Do not assume what Assignment #8 requires. Read the Assignment #8 instructions before proposing or implementing additional gameplay features.
