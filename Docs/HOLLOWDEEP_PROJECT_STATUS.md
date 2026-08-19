@@ -81,6 +81,21 @@ Reference material:
 - Implementation commit: `9f0f638` — "feat: add HOLLOWDEEP melee combat action".
 - Pull request: [#1](https://github.com/Jumdax/TurnBasedStrategyCourse/pull/1) — open, not merged.
 
+**Assignment #6 — GER Pipeline for HOLLOWDEEP (complete):** Built a minimal Generate → Evaluate → Refine pipeline, with a circuit breaker, that generates simple HOLLOWDEEP dungeon room grids and enforces the HOLLOWDEEP Room Accessibility Rule against them.
+
+- Branch: `assignment-06-ger-pipeline`
+- Commit: `5145711` — "feat: add HOLLOWDEEP GER pipeline for assignment 06"
+- Pull request: [#2](https://github.com/Jumdax/TurnBasedStrategyCourse/pull/2) — base `assignment-05-melee-action`, state OPEN, not merged.
+- Implementation (`assignment_06/ger_pipeline.py`):
+  - **Generator** — creates simple dungeon room grids (entrance, door, enemy, chest, floor, blocking walls).
+  - **Evaluator** — enforces the Room Accessibility Rule via BFS reachability from the entrance.
+  - **Refiner** — makes local path repairs to restore accessibility rather than regenerating the room.
+  - **Circuit Breaker** — escalates for human review after 3 unsuccessful refinement attempts.
+- Normal GER flow tested successfully: FAIL → Refine → PASS.
+- `--force-breaker` demo-only flag successfully exercised the circuit-breaker escalation path.
+- No Unity gameplay integration was added; this is intentionally a minimum concept implementation for the assignment, not HOLLOWDEEP's final procedural dungeon-generation system.
+- Rule documented in [`Docs/HOLLOWDEEP_GDD_ADDENDUM.md`](HOLLOWDEEP_GDD_ADDENDUM.md); reference material in [`assignment_06/README.md`](../assignment_06/README.md).
+
 ## Existing Asset Inventory for HOLLOWDEEP
 
 Summary of a read-only inventory pass over `Assets/Synty/` and `Assets/Prefabs/`, cross-referenced against what `Unit.prefab`, `UnitEnemy.prefab`, `Wall.prefab`, `WallDoor.prefab`, and `Column.prefab` actually reference on disk.
@@ -135,4 +150,6 @@ This inventory does not itself determine what Assignment #6 should build. Assign
 
 ## 9. Next Work
 
-Assignment #6 requirements have not yet been analyzed. Do not assume what Assignment #6 requires. Read the Assignment #6 instructions before proposing or implementing additional gameplay features.
+Assignment #6 is complete (see Section 7): a minimal GER pipeline with a circuit breaker, enforcing the Room Accessibility Rule against generated HOLLOWDEEP dungeon room grids, in PR [#2](https://github.com/Jumdax/TurnBasedStrategyCourse/pull/2). It is a standalone concept demonstration and was not integrated into Unity gameplay.
+
+Assignment #7 requirements have not yet been analyzed. Do not assume what Assignment #7 requires. Read the Assignment #7 instructions before proposing or implementing additional gameplay features.
