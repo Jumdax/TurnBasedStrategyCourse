@@ -1,0 +1,573 @@
+{
+    "generated_at": "2026-08-19T13:22:54.4638860-05:00",
+    "results": [
+        {
+            "scenario": "OutOfBoundsQuery",
+            "result": "FINDING",
+            "location": "x: -1; z: -1",
+            "error_type": "IndexOutOfRangeException",
+            "game_context": "Calling Pathfinding.IsWalkableGridPosition() with out-of-bounds grid position x: -1; z: -1 threw an unhandled IndexOutOfRangeException ('Index was outside the bounds of the array.') instead of failing gracefully.",
+            "timestamp": "2026-08-19T13:22:54.4425170-05:00"
+        },
+        {
+            "scenario": "OutOfBoundsQuery",
+            "result": "FINDING",
+            "location": "x: -1; z: 0",
+            "error_type": "IndexOutOfRangeException",
+            "game_context": "Calling Pathfinding.IsWalkableGridPosition() with out-of-bounds grid position x: -1; z: 0 threw an unhandled IndexOutOfRangeException ('Index was outside the bounds of the array.') instead of failing gracefully.",
+            "timestamp": "2026-08-19T13:22:54.4523970-05:00"
+        },
+        {
+            "scenario": "OutOfBoundsQuery",
+            "result": "FINDING",
+            "location": "x: 0; z: -1",
+            "error_type": "IndexOutOfRangeException",
+            "game_context": "Calling Pathfinding.IsWalkableGridPosition() with out-of-bounds grid position x: 0; z: -1 threw an unhandled IndexOutOfRangeException ('Index was outside the bounds of the array.') instead of failing gracefully.",
+            "timestamp": "2026-08-19T13:22:54.4524270-05:00"
+        },
+        {
+            "scenario": "OutOfBoundsQuery",
+            "result": "FINDING",
+            "location": "x: 25; z: 0",
+            "error_type": "IndexOutOfRangeException",
+            "game_context": "Calling Pathfinding.IsWalkableGridPosition() with out-of-bounds grid position x: 25; z: 0 threw an unhandled IndexOutOfRangeException ('Index was outside the bounds of the array.') instead of failing gracefully.",
+            "timestamp": "2026-08-19T13:22:54.4524460-05:00"
+        },
+        {
+            "scenario": "OutOfBoundsQuery",
+            "result": "FINDING",
+            "location": "x: 0; z: 25",
+            "error_type": "IndexOutOfRangeException",
+            "game_context": "Calling Pathfinding.IsWalkableGridPosition() with out-of-bounds grid position x: 0; z: 25 threw an unhandled IndexOutOfRangeException ('Index was outside the bounds of the array.') instead of failing gracefully.",
+            "timestamp": "2026-08-19T13:22:54.4524620-05:00"
+        },
+        {
+            "scenario": "OutOfBoundsQuery",
+            "result": "FINDING",
+            "location": "x: 75; z: 75",
+            "error_type": "IndexOutOfRangeException",
+            "game_context": "Calling Pathfinding.IsWalkableGridPosition() with out-of-bounds grid position x: 75; z: 75 threw an unhandled IndexOutOfRangeException ('Index was outside the bounds of the array.') instead of failing gracefully.",
+            "timestamp": "2026-08-19T13:22:54.4524800-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 0; z: 0 -> x: 1; z: 1",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 0; z: 0 to x: 1; z: 1 even though flanking cell(s) x: 0; z: 1 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4553880-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 0; z: 2 -> x: 1; z: 1",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 0; z: 2 to x: 1; z: 1 even though flanking cell(s) x: 0; z: 1 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4554260-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 1; z: 1 -> x: 0; z: 0",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 1; z: 1 to x: 0; z: 0 even though flanking cell(s) x: 0; z: 1 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4554600-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 1; z: 1 -> x: 0; z: 2",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 1; z: 1 to x: 0; z: 2 even though flanking cell(s) x: 0; z: 1 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4555030-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 2; z: 9 -> x: 3; z: 10",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 2; z: 9 to x: 3; z: 10 even though flanking cell(s) x: 3; z: 9 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4555400-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 3; z: 10 -> x: 2; z: 9",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 3; z: 10 to x: 2; z: 9 even though flanking cell(s) x: 3; z: 9 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4555730-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 3; z: 10 -> x: 4; z: 9",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 3; z: 10 to x: 4; z: 9 even though flanking cell(s) x: 3; z: 9 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4556010-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 4; z: 3 -> x: 5; z: 4",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 4; z: 3 to x: 5; z: 4 even though flanking cell(s) x: 4; z: 4 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4556320-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 4; z: 5 -> x: 5; z: 4",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 4; z: 5 to x: 5; z: 4 even though flanking cell(s) x: 4; z: 4 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4556570-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 4; z: 9 -> x: 3; z: 10",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 4; z: 9 to x: 3; z: 10 even though flanking cell(s) x: 3; z: 9 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4556840-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 5; z: 4 -> x: 4; z: 3",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 5; z: 4 to x: 4; z: 3 even though flanking cell(s) x: 4; z: 4 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4557160-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 5; z: 4 -> x: 4; z: 5",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 5; z: 4 to x: 4; z: 5 even though flanking cell(s) x: 4; z: 4 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4557490-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 5; z: 9 -> x: 6; z: 8",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 5; z: 9 to x: 6; z: 8 even though flanking cell(s) x: 6; z: 9 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4557770-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 5; z: 20 -> x: 6; z: 21",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 5; z: 20 to x: 6; z: 21 even though flanking cell(s) x: 6; z: 20 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4558070-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 6; z: 5 -> x: 7; z: 4",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 6; z: 5 to x: 7; z: 4 even though flanking cell(s) x: 7; z: 5 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4558350-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 6; z: 5 -> x: 7; z: 6",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 6; z: 5 to x: 7; z: 6 even though flanking cell(s) x: 7; z: 5 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4558650-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 6; z: 8 -> x: 5; z: 9",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 6; z: 8 to x: 5; z: 9 even though flanking cell(s) x: 6; z: 9 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4558930-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 6; z: 8 -> x: 7; z: 9",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 6; z: 8 to x: 7; z: 9 even though flanking cell(s) x: 6; z: 9 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4559210-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 6; z: 21 -> x: 5; z: 20",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 6; z: 21 to x: 5; z: 20 even though flanking cell(s) x: 6; z: 20 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4559490-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 6; z: 21 -> x: 7; z: 20",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 6; z: 21 to x: 7; z: 20 even though flanking cell(s) x: 6; z: 20 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4559770-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 7; z: 4 -> x: 6; z: 5",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 7; z: 4 to x: 6; z: 5 even though flanking cell(s) x: 7; z: 5 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4560040-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 7; z: 4 -> x: 8; z: 3",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 7; z: 4 to x: 8; z: 3 even though flanking cell(s) x: 8; z: 4 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4560300-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 7; z: 4 -> x: 8; z: 5",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 7; z: 4 to x: 8; z: 5 even though flanking cell(s) x: 8; z: 4 and x: 7; z: 5 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4560620-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 7; z: 6 -> x: 6; z: 5",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 7; z: 6 to x: 6; z: 5 even though flanking cell(s) x: 7; z: 5 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4560910-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 7; z: 6 -> x: 8; z: 5",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 7; z: 6 to x: 8; z: 5 even though flanking cell(s) x: 8; z: 6 and x: 7; z: 5 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4561200-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 7; z: 6 -> x: 8; z: 7",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 7; z: 6 to x: 8; z: 7 even though flanking cell(s) x: 8; z: 6 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4561460-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 7; z: 9 -> x: 6; z: 8",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 7; z: 9 to x: 6; z: 8 even though flanking cell(s) x: 6; z: 9 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4561730-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 7; z: 20 -> x: 6; z: 21",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 7; z: 20 to x: 6; z: 21 even though flanking cell(s) x: 6; z: 20 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4562030-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 8; z: 3 -> x: 7; z: 4",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 8; z: 3 to x: 7; z: 4 even though flanking cell(s) x: 8; z: 4 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4562340-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 8; z: 3 -> x: 9; z: 4",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 8; z: 3 to x: 9; z: 4 even though flanking cell(s) x: 8; z: 4 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4562610-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 8; z: 5 -> x: 7; z: 4",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 8; z: 5 to x: 7; z: 4 even though flanking cell(s) x: 7; z: 5 and x: 8; z: 4 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4563740-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 8; z: 5 -> x: 7; z: 6",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 8; z: 5 to x: 7; z: 6 even though flanking cell(s) x: 7; z: 5 and x: 8; z: 6 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4564370-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 8; z: 5 -> x: 9; z: 4",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 8; z: 5 to x: 9; z: 4 even though flanking cell(s) x: 8; z: 4 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4564760-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 8; z: 5 -> x: 9; z: 6",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 8; z: 5 to x: 9; z: 6 even though flanking cell(s) x: 8; z: 6 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4565230-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 8; z: 7 -> x: 7; z: 6",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 8; z: 7 to x: 7; z: 6 even though flanking cell(s) x: 8; z: 6 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4565530-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 8; z: 7 -> x: 9; z: 6",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 8; z: 7 to x: 9; z: 6 even though flanking cell(s) x: 9; z: 7 and x: 8; z: 6 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4565890-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 8; z: 7 -> x: 9; z: 8",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 8; z: 7 to x: 9; z: 8 even though flanking cell(s) x: 9; z: 7 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4566230-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 9; z: 4 -> x: 8; z: 3",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 9; z: 4 to x: 8; z: 3 even though flanking cell(s) x: 8; z: 4 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4566650-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 9; z: 4 -> x: 8; z: 5",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 9; z: 4 to x: 8; z: 5 even though flanking cell(s) x: 8; z: 4 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4567370-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 9; z: 6 -> x: 8; z: 5",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 9; z: 6 to x: 8; z: 5 even though flanking cell(s) x: 8; z: 6 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4567700-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 9; z: 6 -> x: 8; z: 7",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 9; z: 6 to x: 8; z: 7 even though flanking cell(s) x: 8; z: 6 and x: 9; z: 7 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4568380-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 9; z: 8 -> x: 8; z: 7",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 9; z: 8 to x: 8; z: 7 even though flanking cell(s) x: 9; z: 7 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4568700-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 9; z: 9 -> x: 10; z: 10",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 9; z: 9 to x: 10; z: 10 even though flanking cell(s) x: 10; z: 9 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4568980-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 10; z: 10 -> x: 9; z: 9",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 10; z: 10 to x: 9; z: 9 even though flanking cell(s) x: 10; z: 9 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4569300-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 11; z: 12 -> x: 12; z: 13",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 11; z: 12 to x: 12; z: 13 even though flanking cell(s) x: 12; z: 12 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4569640-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 12; z: 13 -> x: 11; z: 12",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 12; z: 13 to x: 11; z: 12 even though flanking cell(s) x: 12; z: 12 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4569930-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 12; z: 13 -> x: 13; z: 12",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 12; z: 13 to x: 13; z: 12 even though flanking cell(s) x: 12; z: 12 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4570400-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 13; z: 12 -> x: 12; z: 13",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 13; z: 12 to x: 12; z: 13 even though flanking cell(s) x: 12; z: 12 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4570840-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 14; z: 9 -> x: 15; z: 8",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 14; z: 9 to x: 15; z: 8 even though flanking cell(s) x: 15; z: 9 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4571160-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 14; z: 21 -> x: 15; z: 22",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 14; z: 21 to x: 15; z: 22 even though flanking cell(s) x: 15; z: 21 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4571570-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 15; z: 8 -> x: 14; z: 9",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 15; z: 8 to x: 14; z: 9 even though flanking cell(s) x: 15; z: 9 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4571880-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 15; z: 8 -> x: 16; z: 9",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 15; z: 8 to x: 16; z: 9 even though flanking cell(s) x: 15; z: 9 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4572130-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 15; z: 22 -> x: 14; z: 21",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 15; z: 22 to x: 14; z: 21 even though flanking cell(s) x: 15; z: 21 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4572490-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 15; z: 22 -> x: 16; z: 21",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 15; z: 22 to x: 16; z: 21 even though flanking cell(s) x: 15; z: 21 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4572770-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 16; z: 9 -> x: 15; z: 8",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 16; z: 9 to x: 15; z: 8 even though flanking cell(s) x: 15; z: 9 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4573060-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 16; z: 21 -> x: 15; z: 22",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 16; z: 21 to x: 15; z: 22 even though flanking cell(s) x: 15; z: 21 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4573350-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 18; z: 2 -> x: 19; z: 1",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 18; z: 2 to x: 19; z: 1 even though flanking cell(s) x: 19; z: 2 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4573670-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 18; z: 14 -> x: 19; z: 15",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 18; z: 14 to x: 19; z: 15 even though flanking cell(s) x: 19; z: 14 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4573940-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 19; z: 1 -> x: 18; z: 2",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 19; z: 1 to x: 18; z: 2 even though flanking cell(s) x: 19; z: 2 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4574220-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 19; z: 1 -> x: 20; z: 2",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 19; z: 1 to x: 20; z: 2 even though flanking cell(s) x: 19; z: 2 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4574500-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 19; z: 15 -> x: 18; z: 14",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 19; z: 15 to x: 18; z: 14 even though flanking cell(s) x: 19; z: 14 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4574750-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 19; z: 15 -> x: 20; z: 14",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 19; z: 15 to x: 20; z: 14 even though flanking cell(s) x: 19; z: 14 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4575030-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 20; z: 2 -> x: 19; z: 1",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 20; z: 2 to x: 19; z: 1 even though flanking cell(s) x: 19; z: 2 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4575300-05:00"
+        },
+        {
+            "scenario": "DiagonalCornerCutting",
+            "result": "FINDING",
+            "location": "x: 20; z: 14 -> x: 19; z: 15",
+            "error_type": "DiagonalCornerCut",
+            "game_context": "Pathfinding.FindPath took a direct single-step diagonal move from x: 20; z: 14 to x: 19; z: 15 even though flanking cell(s) x: 19; z: 14 are unwalkable. Pathfinding.GetNeighbourList() does not check flanking cells before including a diagonal neighbor.",
+            "timestamp": "2026-08-19T13:22:54.4575570-05:00"
+        },
+        {
+            "scenario": "ActionPointBypass",
+            "result": "FINDING",
+            "location": "Unit (1)",
+            "error_type": "ActionPointBypass",
+            "game_context": "Unit (1) had 0 action points (CanSpendActionPointsToTakeAction returned false), but calling MoveAction.TakeAction() directly still executed successfully with no exception. BaseAction.TakeAction() and its overrides contain no internal action-point check - enforcement exists only in Unit.TrySpendActionPointsToTakeAction(). This test targeted the unit's own current grid position, so no visible relocation occurred; its action points remain at 0 until the next turn change, exactly as if spent normally.",
+            "timestamp": "2026-08-19T13:22:54.4636500-05:00"
+        }
+    ]
+}
