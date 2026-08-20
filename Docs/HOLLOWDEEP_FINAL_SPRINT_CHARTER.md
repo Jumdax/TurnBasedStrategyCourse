@@ -211,6 +211,7 @@ The Lead / Orchestrator coordinates all lanes and owns checkpoint sign-off.
 3. The owning agent either makes the change itself, or explicitly delegates the edit back with scope constraints.
 4. Handoffs are logged by the Lead / Orchestrator in `Docs/HOLLOWDEEP_PROJECT_STATUS.md` (or a dedicated `assignment_10/HANDOFF_LOG.md` if the volume of handoffs makes that cleaner — Lead's call, logged either way).
 5. `ProjectSettings/` and `GameScene.unity` changes always route through their owning agent, no exceptions, given their blast radius and merge risk.
+6. **Amendment (approved during Sprint 2 planning):** Replacing an *existing* scene instance's source prefab (e.g. converting a placed `Unit.prefab` instance to a different Prefab Variant) is **not** performed by an agent hand-editing scene YAML. This specific class of operation — reassigning `m_SourcePrefab` on an instance that already carries accumulated scene-level overrides — is higher-risk than additive edits (new instances, new override properties) because the override fileIDs are relative to the specific source prefab's internal structure. It is instead performed manually by Britt in the Unity Editor, following written guidance an agent may prepare (exact steps, which instance, which new prefab, what to re-verify). This is an intentional, standing risk-reduction pattern for this class of change, not a one-off Sprint 2 exception.
 
 ## 13. Git / Branch Strategy
 
