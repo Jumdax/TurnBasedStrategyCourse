@@ -1,0 +1,59 @@
+{
+  "_provenance": {
+    "source": "assignment_06/ger_pipeline.py",
+    "command": "python3 assignment_06/ger_pipeline.py",
+    "run_timestamp_utc": "2026-08-19T23:46:59Z",
+    "note": "Faithfully transcribed from the real, unmodified console output of the command above. No cell values were invented or hand-adjusted. Full raw transcript is in assignment_10/PIPELINE_PROVENANCE.md.",
+    "modified_assignment_06": false
+  },
+  "grid_dimensions": {
+    "rows": 6,
+    "cols": 6
+  },
+  "legend": {
+    "E": "entrance",
+    "D": "door",
+    "X": "enemy",
+    "C": "chest",
+    "#": "wall (blocking)",
+    ".": "floor (traversable)"
+  },
+  "coordinate_convention": "[row, col], 0-indexed, row 0 = top row as printed, col 0 = leftmost column as printed",
+  "entrance": [0, 0],
+  "door": [4, 1],
+  "enemy": [1, 3],
+  "chest": [0, 4],
+  "walls": [
+    [2, 0],
+    [2, 4],
+    [3, 0],
+    [3, 2],
+    [3, 5],
+    [4, 3],
+    [5, 2]
+  ],
+  "grid_ascii": [
+    "E . . . C .",
+    ". . . X . .",
+    "# . . . # .",
+    "# . # . . #",
+    ". D . # . .",
+    ". . # . . ."
+  ],
+  "grid_symbols": [
+    ["E", ".", ".", ".", "C", "."],
+    [".", ".", ".", "X", ".", "."],
+    ["#", ".", ".", ".", "#", "."],
+    ["#", ".", "#", ".", ".", "#"],
+    [".", "D", ".", "#", ".", "."],
+    [".", ".", "#", ".", ".", "."]
+  ],
+  "evaluation": {
+    "initial_evaluation_result": "PASS",
+    "initial_evaluation_message": "PASS - all doors, enemies, and chests are reachable from the entrance.",
+    "refinement_attempts_taken": 0,
+    "final_result": "PASS",
+    "final_result_message": "RESULT: PASS after 0 refinement attempt(s).",
+    "circuit_breaker_tripped": false
+  }
+}
