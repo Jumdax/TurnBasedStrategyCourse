@@ -30,9 +30,17 @@ public class MeleeAttackAction : BaseAction
         switch (state)
         {
             case State.Attacking:
-                Vector3 aimDir = (targetUnit.GetWorldPosition() - unit.GetWorldPosition()).normalized;
-                float rotateSpeed = 10f;
-                transform.forward = Vector3.Lerp(transform.forward, aimDir, rotateSpeed * Time.deltaTime);
+                // targetUnit can be destroyed mid-state if the hit that just landed was lethal
+                // (HealthSystem.Damage -> Die -> Unit.HealthSystem_OnDead -> Destroy runs
+                // synchronously from within Attack() below), so guard against it on every
+                // remaining frame of this state rather than assuming it survives the full
+                // attackingStateTime window.
+                if (targetUnit != null)
+                {
+                    Vector3 aimDir = (targetUnit.GetWorldPosition() - unit.GetWorldPosition()).normalized;
+                    float rotateSpeed = 10f;
+                    transform.forward = Vector3.Lerp(transform.forward, aimDir, rotateSpeed * Time.deltaTime);
+                }
 
                 if (canDealDamage)
                 {
