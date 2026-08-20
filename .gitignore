@@ -74,3 +74,6 @@ crashlytics-build.properties
 # ELVTR Assignment 05 submission package output
 assignment_05/output/
 Britt_Gray_Assignment_05_Goal_Oriented_Coding_Agent.zip
+
+# Stray repo-root Burst WebGL intermediate output (build byproduct, not source)
+/Data/
