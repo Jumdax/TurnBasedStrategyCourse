@@ -127,6 +127,11 @@ public class Unit : MonoBehaviour
         healthSystem.Damage(damageAmount);
     }
 
+    public void HealToFull()
+    {
+        healthSystem.HealToFull();
+    }
+
     private void HealthSystem_OnDead(object sender, EventArgs e)
     {
         LevelGrid.Instance.RemoveUnitAtGridPosition(gridPosition, this);

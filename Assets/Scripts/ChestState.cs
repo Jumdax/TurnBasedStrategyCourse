@@ -8,7 +8,15 @@ public class ChestState : MonoBehaviour
 
     public event EventHandler OnChestOpened;
 
+    /// <summary>Fires for any chest, alongside the per-instance OnChestOpened, so a single
+    /// game-state listener can observe every chest without being wired to each one individually
+    /// in the Inspector. Mirrors the existing Unit.OnAnyUnitDead static-event pattern.</summary>
+    public static event EventHandler<ChestState> OnAnyChestOpened;
+
     [SerializeField] private bool isOpen = false;
+
+    [Tooltip("If true, successfully opening this chest triggers the Victory state (after party healing).")]
+    [SerializeField] private bool isVictoryChest = false;
 
     private void Awake()
     {
@@ -25,6 +33,11 @@ public class ChestState : MonoBehaviour
         return isOpen;
     }
 
+    public bool IsVictoryChest()
+    {
+        return isVictoryChest;
+    }
+
     public bool TryOpen()
     {
         if (isOpen)
@@ -34,6 +47,7 @@ public class ChestState : MonoBehaviour
 
         isOpen = true;
         OnChestOpened?.Invoke(this, EventArgs.Empty);
+        OnAnyChestOpened?.Invoke(this, this);
         return true;
     }
 
