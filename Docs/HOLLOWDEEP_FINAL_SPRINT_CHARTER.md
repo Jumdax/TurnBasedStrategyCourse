@@ -72,6 +72,8 @@ The room's structural layout is authored using a **validated, provenance-tracked
 
 This is deliberately smaller than "a dungeon wing." It is one encounter with a beginning, a middle, and an end.
 
+**Amendment (approved for Checkpoint 3A/3B planning, superseding the room-count and win-condition language above):** the vertical slice is expanded from "one chamber, at most two rooms" to a **4–7 room dungeon, target 6 rooms**, hand-built (not procedurally generated) from the same existing structural assets, connected by traversable corridors/doorways. At least one room must be reachable only via a route that is not required to reach the exit (i.e. genuinely optional — skippable without blocking completion). The chest-based win condition described above is superseded: **Victory now occurs when at least one player hero remains alive and every currently-surviving player hero has reached the dungeon exit** (dead heroes do not need to reach it; victory does not require killing every enemy, visiting every room, or opening any chest). **Loss remains: all player heroes dead**, detected via the existing `DefeatStateDetector` (unchanged). Full topology, exit architecture, and edge-case logic are specified in `Docs/HOLLOWDEEP_SPRINT_3A_3B_WORK_PACKAGES.md`, not restated here.
+
 ## 6. Explicit In-Scope Features
 
 **IMPLEMENTED NOW** (already true today — no work required):
@@ -97,14 +99,14 @@ This is deliberately smaller than "a dungeon wing." It is one encounter with a b
 
 **DEFERRED / OUT OF SCOPE** (explicitly not this sprint, regardless of GDD status):
 - Light/Torch 30-round timer, Dark Events.
-- Fixed four-hero party, Fighter/Priest class distinction.
+- ~~Fixed four-hero party, Fighter/Priest class distinction~~ **— shipped in Sprint 2, no longer deferred (historical note only; this list is not otherwise being reconciled against actual Sprint 1/2 delivery as part of this amendment).**
 - Inventory/loot verbs.
 - Downed/stabilize recovery.
 - Full 6–8 room procedural dungeon wing; multiple enemy types.
 - Melee animations/VFX/SFX; melee camera cinematics.
 - Reworking, retiring, or reskinning `ShootAction` itself.
 - Rebalancing the AP economy to the GDD's 4 AP / move=1 / attack=2 spec.
-- Live, in-Unity runtime procedural generation using the GER pipeline (it remains an offline authoring tool this sprint — see §16).
+- Live, in-Unity runtime procedural generation using the GER pipeline (it remains an offline authoring tool this sprint — see §16). **A hand-built, non-procedural 4–7 room dungeon (target 6) is now REQUIRED — see §5 amendment — and is not the same thing as this deferred item, which refers specifically to runtime/algorithmic generation.**
 - Fixing diagonal corner-cutting in `Pathfinding.cs` (mitigated via level layout instead — see §19).
 - Hardening `BaseAction.TakeAction()` against direct-call AP bypass (no reachable path in the shipped game — see §19).
 - Town hub, additional classes, second dungeon wing (GDD's own explicit stretch goals).
@@ -172,6 +174,7 @@ Owns: Assignment #10 audit/documentation artifacts, specifically-assigned GDD do
 | `Docs/HOLLOWDEEP_FINAL_SPRINT_CHARTER.md` | Lead / Orchestrator | Scope changes go through the Lead (§20). |
 | `assignment_10/` | AI Pipeline Integration Engineer (code/artifacts) + Pipeline Auditor (audit/doc contents) | Split by content type, not by directory — see handoff rule in §12 if both need the same file. |
 | GDD (`Docs/HOLLOWDEEP_GDD.pdf`, `Docs/HOLLOWDEEP_GDD_ADDENDUM.md`) | Pipeline Auditor / Documentation Agent | The PDF itself is not edited this sprint. The Addendum may receive a final reconciliation note only. |
+| `Assets/Scripts/DungeonExit.cs` (new, Checkpoint 3B), the Win/Loss state script that consumes it + `DefeatStateDetector` (new, Checkpoint 3B) | Unity Gameplay Engineer | **Amendment (approved for Checkpoint 3A/3B planning).** Standalone scripts, no `GameScene.unity` edits by Gameplay. Attachment to a GameObject in the Exit Room, and the Win/Loss UI panel itself, are handed off to Presentation per §12 rule 6's pattern — exact instructions, no direct scene edit by Gameplay. |
 
 **Files that do not fit cleanly into the above categories — recommended ownership:**
 
@@ -198,7 +201,7 @@ Owns: Assignment #10 audit/documentation artifacts, specifically-assigned GDD do
 Checkpoints:
 1. **Checkpoint 0 (now):** current baseline, confirmed by this charter's §3. No verified build has been produced yet this sprint.
 2. **Checkpoint 1 — First Build:** any successful build (Editor build, not necessarily WebGL) of the current or near-current scene. Triggers QA lane start.
-3. **Checkpoint 2 — Vertical Slice Feature-Complete:** win/loss loop wired, room dressed, GER-sourced layout authored.
+3. **Checkpoint 2 — Vertical Slice Feature-Complete:** win/loss loop wired, room dressed, GER-sourced layout authored. **Amendment (approved for Checkpoint 3A/3B planning): this milestone is now reached in two sequenced sub-checkpoints, detailed in `Docs/HOLLOWDEEP_SPRINT_3A_3B_WORK_PACKAGES.md`.** **Checkpoint 3A (Dungeon Expansion)** must be manually validated by Britt before **Checkpoint 3B (Exit + Win/Loss State)** begins — Gameplay's exit/win-loss scripts may be authored in parallel with 3A, but attachment into `GameScene.unity` and the manual Win/Loss test both wait for 3A's dungeon layout to exist. "3A/3B" is this Final Sprint's internal execution label for reaching Checkpoint 2; it is not a new entry in this numbered checkpoint list.
 4. **Checkpoint 3 — Pipeline Integration Merged:** Lane B's traceable artifact and provenance documentation are in place and referenced from the shipped scene.
 5. **Checkpoint 4 — Release Candidate:** WebGL (or fallback) build, published link, external playtest complete, Assignment #10 evidence assembled.
 
