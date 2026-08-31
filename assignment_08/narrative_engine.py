@@ -15,11 +15,16 @@ anthropic.Anthropic() picks it up from the environment on its own.
 """
 
 import json
+import os
+from datetime import datetime, timezone
 
 from anthropic import Anthropic
 
 MODEL = "claude-sonnet-5"
 MAX_TOKENS = 300
+
+OUTPUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "output")
+USAGE_REPORT_PATH = os.path.join(OUTPUT_DIR, "usage_report.json")
 
 SYSTEM_PROMPT = """You are the Dungeon Master narrating a single HOLLOWDEEP encounter: a grim, low-fantasy crypt antechamber lit by one burning torch, holding a chained prisoner and a locked chest.
 
@@ -66,7 +71,7 @@ def apply_action_to_ledger(ledger, action_text):
     return ledger
 
 
-def get_dm_response(client, history, ledger, action_text):
+def get_dm_response(client, history, ledger, action_text, usage_log=None):
     user_content = f"[Current Ledger: {json.dumps(ledger)}]\nPlayer action: {action_text}"
     history.append({"role": "user", "content": user_content})
 
@@ -78,14 +83,69 @@ def get_dm_response(client, history, ledger, action_text):
     )
     narration = next(block.text for block in response.content if block.type == "text").strip()
 
+    if usage_log is not None:
+        # model_dump() reflects exactly the usage fields this SDK/API response
+        # actually returned — nothing here is assumed or hard-coded.
+        usage_log.append(response.usage.model_dump())
+
     history.append({"role": "assistant", "content": narration})
     return narration
+
+
+def _sum_usage_field(usage_log, field_name):
+    return sum(call_usage.get(field_name, 0) or 0 for call_usage in usage_log)
+
+
+def write_usage_report(usage_log, turn_actions):
+    totals = {}
+    for call_usage in usage_log:
+        for field_name in call_usage:
+            totals.setdefault(field_name, 0)
+    for field_name in totals:
+        totals[field_name] = _sum_usage_field(usage_log, field_name)
+
+    report = {
+        "run_timestamp": datetime.now(timezone.utc).isoformat(),
+        "model": MODEL,
+        "num_api_calls": len(usage_log),
+        "calls": [
+            {
+                "turn": turn_number,
+                "action": action_text,
+                "usage": call_usage,
+            }
+            for turn_number, (action_text, call_usage) in enumerate(
+                zip(turn_actions, usage_log), start=1
+            )
+        ],
+        "totals": totals,
+        "note": (
+            "Token usage only, captured verbatim from response.usage on each "
+            "client.messages.create() call. This report intentionally omits a "
+            "dollar-cost figure: the Anthropic API does not return an "
+            "authoritative dollar-cost value in the response. Monetary cost "
+            "should be calculated separately from the token totals above "
+            "using the applicable published Anthropic pricing for the model "
+            "named here, with the calculation method documented alongside "
+            "this file. This run is a fresh, dated reproducibility/"
+            "cost-transparency measurement for ELVTR Assignment #10 and does "
+            "not represent the historical cost of the original Assignment #8 "
+            "execution, which was never instrumented and cannot be recovered."
+        ),
+    }
+
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    with open(USAGE_REPORT_PATH, "w") as report_file:
+        json.dump(report, report_file, indent=2)
+
+    return report
 
 
 def run_demo():
     client = Anthropic()
     ledger = dict(INITIAL_LEDGER)
     history = []
+    usage_log = []
 
     for turn_number, action_text in enumerate(TEST_ACTIONS, start=1):
         print(f"===== Turn {turn_number} =====")
@@ -96,10 +156,14 @@ def run_demo():
         print(json.dumps(ledger, indent=2))
         print()
 
-        narration = get_dm_response(client, history, ledger, action_text)
+        narration = get_dm_response(client, history, ledger, action_text, usage_log)
         print("DM:")
         print(narration)
         print()
+
+    report = write_usage_report(usage_log, TEST_ACTIONS)
+    print(f"Usage report written to {USAGE_REPORT_PATH}")
+    print(json.dumps(report["totals"], indent=2))
 
 
 if __name__ == "__main__":
