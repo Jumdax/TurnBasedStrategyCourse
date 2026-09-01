@@ -136,6 +136,31 @@ public class UnitActionSystem : MonoBehaviour
         return selectedUnit;
     }
 
+    // Guarded, non-mouse selection entry point (e.g. for UI buttons). Reuses the
+    // existing private SetSelectedUnit so there is only one selection code path;
+    // rejects the same conditions the mouse-click path is naturally excluded from
+    // via Update()'s own isBusy/IsPlayerTurn guards.
+    public bool TrySelectUnit(Unit unit)
+    {
+        if (unit == null)
+        {
+            return false;
+        }
+
+        if (isBusy)
+        {
+            return false;
+        }
+
+        if (!TurnSystem.Instance.IsPlayerTurn())
+        {
+            return false;
+        }
+
+        SetSelectedUnit(unit);
+        return true;
+    }
+
     public BaseAction GetSelectedAction()
     {
         return selectedAction;

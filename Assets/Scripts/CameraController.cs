@@ -87,4 +87,19 @@ public class CameraController : MonoBehaviour
         cinemachineTransposer.m_FollowOffset = 
             Vector3.Lerp(cinemachineTransposer.m_FollowOffset, targetFollowOffset, Time.deltaTime * zoomSpeed);
     }
+
+    // One-shot repositioning of the rig over a unit. The Cinemachine virtual camera's
+    // Follow/LookAt are already bound to this rig's own transform (not to any unit), so
+    // moving transform.position here is all that's needed - Cinemachine reframes on its
+    // own with no target reassignment and no new interpolation logic.
+    public void FocusOnUnit(Unit unit)
+    {
+        if (unit == null)
+        {
+            return;
+        }
+
+        Vector3 unitWorldPosition = unit.GetWorldPosition();
+        transform.position = new Vector3(unitWorldPosition.x, transform.position.y, unitWorldPosition.z);
+    }
 }
