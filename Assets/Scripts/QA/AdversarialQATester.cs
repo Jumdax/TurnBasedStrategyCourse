@@ -54,6 +54,10 @@ public class AdversarialQATester : MonoBehaviour
         TestOutOfBoundsQuery();
         TestDiagonalCornerCutting();
         TestActionPointBypass();
+        TestFighterActionSet();
+        TestPriestActionSet();
+        TestEnemyActionSet();
+        TestChestConfiguration();
 
         WriteReport();
 
@@ -308,6 +312,254 @@ public class AdversarialQATester : MonoBehaviour
                 location = testUnit.name,
                 error_type = "ActionPointBypass",
                 game_context = $"{testUnit.name} had 0 action points (CanSpendActionPointsToTakeAction returned false), but calling MoveAction.TakeAction() directly still executed successfully with no exception. BaseAction.TakeAction() and its overrides contain no internal action-point check - enforcement exists only in Unit.TrySpendActionPointsToTakeAction(). This test targeted the unit's own current grid position, so no visible relocation occurred; its action points remain at 0 until the next turn change, exactly as if spent normally.",
+                timestamp = DateTime.Now.ToString("o"),
+            });
+        }
+    }
+
+    // Finds a friendly unit by GameObject name ("Fighter" / "Priest") - the existing,
+    // human-authored, non-circular identifier already baked into Fighter.prefab and
+    // Priest.prefab. Deliberately does not use action-component presence/absence to
+    // identify the unit, since that is exactly what these tests are validating.
+    private static Unit FindUnitByName(List<Unit> units, string unitName)
+    {
+        if (units == null)
+        {
+            return null;
+        }
+
+        foreach (Unit unit in units)
+        {
+            if (unit != null && unit.name == unitName)
+            {
+                return unit;
+            }
+        }
+
+        return null;
+    }
+
+    private void TestFighterActionSet()
+    {
+        const string scenario = "FighterActionSet";
+
+        Unit fighter = FindUnitByName(UnitManager.Instance.GetFriendlyUnitList(), "Fighter");
+        if (fighter == null)
+        {
+            results.Add(new QAFinding
+            {
+                scenario = scenario,
+                result = "FINDING",
+                location = "Fighter",
+                error_type = "UnitNotFound",
+                game_context = "No friendly Unit with gameObject.name == \"Fighter\" was found via UnitManager.Instance.GetFriendlyUnitList().",
+                timestamp = DateTime.Now.ToString("o"),
+            });
+            return;
+        }
+
+        List<string> violations = new List<string>();
+        if (fighter.GetAction<MoveAction>() == null) violations.Add("missing MoveAction");
+        if (fighter.GetAction<MeleeAttackAction>() == null) violations.Add("missing MeleeAttackAction");
+        if (fighter.GetAction<OpenChestAction>() == null) violations.Add("missing OpenChestAction");
+        if (fighter.GetAction<SmiteAction>() != null) violations.Add("unexpected SmiteAction present");
+        if (fighter.GetAction<ShootAction>() != null) violations.Add("unexpected ShootAction present");
+
+        if (violations.Count == 0)
+        {
+            results.Add(new QAFinding
+            {
+                scenario = scenario,
+                result = "PASS",
+                location = fighter.name,
+                error_type = "None",
+                game_context = "Fighter has exactly Move, Melee, and Open Chest actions; no Smite or Shoot.",
+                timestamp = DateTime.Now.ToString("o"),
+            });
+        }
+        else
+        {
+            results.Add(new QAFinding
+            {
+                scenario = scenario,
+                result = "FINDING",
+                location = fighter.name,
+                error_type = "ActionSetMismatch",
+                game_context = $"Fighter action set violations: {string.Join("; ", violations)}.",
+                timestamp = DateTime.Now.ToString("o"),
+            });
+        }
+    }
+
+    private void TestPriestActionSet()
+    {
+        const string scenario = "PriestActionSet";
+
+        Unit priest = FindUnitByName(UnitManager.Instance.GetFriendlyUnitList(), "Priest");
+        if (priest == null)
+        {
+            results.Add(new QAFinding
+            {
+                scenario = scenario,
+                result = "FINDING",
+                location = "Priest",
+                error_type = "UnitNotFound",
+                game_context = "No friendly Unit with gameObject.name == \"Priest\" was found via UnitManager.Instance.GetFriendlyUnitList().",
+                timestamp = DateTime.Now.ToString("o"),
+            });
+            return;
+        }
+
+        List<string> violations = new List<string>();
+        if (priest.GetAction<MoveAction>() == null) violations.Add("missing MoveAction");
+        if (priest.GetAction<MeleeAttackAction>() == null) violations.Add("missing MeleeAttackAction");
+        if (priest.GetAction<SmiteAction>() == null) violations.Add("missing SmiteAction");
+        if (priest.GetAction<OpenChestAction>() == null) violations.Add("missing OpenChestAction");
+        if (priest.GetAction<ShootAction>() != null) violations.Add("unexpected ShootAction present");
+
+        if (violations.Count == 0)
+        {
+            results.Add(new QAFinding
+            {
+                scenario = scenario,
+                result = "PASS",
+                location = priest.name,
+                error_type = "None",
+                game_context = "Priest has exactly Move, Melee, Smite, and Open Chest actions; no Shoot.",
+                timestamp = DateTime.Now.ToString("o"),
+            });
+        }
+        else
+        {
+            results.Add(new QAFinding
+            {
+                scenario = scenario,
+                result = "FINDING",
+                location = priest.name,
+                error_type = "ActionSetMismatch",
+                game_context = $"Priest action set violations: {string.Join("; ", violations)}.",
+                timestamp = DateTime.Now.ToString("o"),
+            });
+        }
+    }
+
+    private void TestEnemyActionSet()
+    {
+        const string scenario = "EnemyActionSet";
+
+        List<Unit> enemies = UnitManager.Instance.GetEnemyUnitList();
+        if (enemies == null || enemies.Count == 0)
+        {
+            results.Add(new QAFinding
+            {
+                scenario = scenario,
+                result = "PASS",
+                location = "n/a",
+                error_type = "None",
+                game_context = "No enemy units were present in the scene to validate the enemy action set against.",
+                timestamp = DateTime.Now.ToString("o"),
+            });
+            return;
+        }
+
+        int violatingEnemyCount = 0;
+
+        foreach (Unit enemy in enemies)
+        {
+            List<string> violations = new List<string>();
+            if (enemy.GetAction<MoveAction>() == null) violations.Add("missing MoveAction");
+            if (enemy.GetAction<MeleeAttackAction>() == null) violations.Add("missing MeleeAttackAction");
+            if (enemy.GetAction<SmiteAction>() != null) violations.Add("unexpected SmiteAction present");
+            if (enemy.GetAction<ShootAction>() != null) violations.Add("unexpected ShootAction present");
+            if (enemy.GetAction<OpenChestAction>() != null) violations.Add("unexpected OpenChestAction present");
+
+            if (violations.Count > 0)
+            {
+                violatingEnemyCount++;
+                results.Add(new QAFinding
+                {
+                    scenario = scenario,
+                    result = "FINDING",
+                    location = $"{enemy.name} at {enemy.GetGridPosition()}",
+                    error_type = "ActionSetMismatch",
+                    game_context = $"Enemy action set violations: {string.Join("; ", violations)}.",
+                    timestamp = DateTime.Now.ToString("o"),
+                });
+            }
+        }
+
+        if (violatingEnemyCount == 0)
+        {
+            results.Add(new QAFinding
+            {
+                scenario = scenario,
+                result = "PASS",
+                location = $"{enemies.Count} enemy unit(s)",
+                error_type = "None",
+                game_context = $"All {enemies.Count} enemy unit(s) have exactly Move and Melee actions; no Smite, Shoot, or Open Chest.",
+                timestamp = DateTime.Now.ToString("o"),
+            });
+        }
+    }
+
+    private void TestChestConfiguration()
+    {
+        const string scenario = "ChestConfiguration";
+
+        ChestState[] chests = FindObjectsByType<ChestState>(FindObjectsSortMode.None);
+
+        List<ChestState> normalChests = new List<ChestState>();
+        List<ChestState> victoryChests = new List<ChestState>();
+
+        if (chests != null)
+        {
+            foreach (ChestState chest in chests)
+            {
+                if (chest == null)
+                {
+                    continue;
+                }
+
+                if (chest.IsVictoryChest())
+                {
+                    victoryChests.Add(chest);
+                }
+                else
+                {
+                    normalChests.Add(chest);
+                }
+            }
+        }
+
+        bool hasAtLeastOneNormalChest = normalChests.Count >= 1;
+        bool hasExactlyOneVictoryChest = victoryChests.Count == 1;
+
+        if (hasAtLeastOneNormalChest && hasExactlyOneVictoryChest)
+        {
+            ChestState victoryChest = victoryChests[0];
+            results.Add(new QAFinding
+            {
+                scenario = scenario,
+                result = "PASS",
+                location = victoryChest.gameObject.name,
+                error_type = "None",
+                game_context = $"Found {normalChests.Count} normal chest(s) and exactly one victory chest, \"{victoryChest.gameObject.name}\" at world position {victoryChest.transform.position}.",
+                timestamp = DateTime.Now.ToString("o"),
+            });
+        }
+        else
+        {
+            List<string> violations = new List<string>();
+            if (!hasAtLeastOneNormalChest) violations.Add($"expected at least 1 normal chest, found {normalChests.Count}");
+            if (!hasExactlyOneVictoryChest) violations.Add($"expected exactly 1 victory chest, found {victoryChests.Count}");
+
+            results.Add(new QAFinding
+            {
+                scenario = scenario,
+                result = "FINDING",
+                location = $"{normalChests.Count} normal, {victoryChests.Count} victory chest(s) found",
+                error_type = "ChestConfigurationMismatch",
+                game_context = $"Chest configuration violations: {string.Join("; ", violations)}.",
                 timestamp = DateTime.Now.ToString("o"),
             });
         }
