@@ -92,17 +92,36 @@ def get_dm_response(client, history, ledger, action_text, usage_log=None):
     return narration
 
 
+def _is_numeric_usage_value(value):
+    # bool is a subclass of int in Python, so it must be excluded explicitly.
+    return isinstance(value, (int, float)) and not isinstance(value, bool)
+
+
 def _sum_usage_field(usage_log, field_name):
-    return sum(call_usage.get(field_name, 0) or 0 for call_usage in usage_log)
+    # Tolerates the field being numeric on some calls and absent/non-numeric
+    # on others by simply skipping non-numeric/missing values per call.
+    return sum(
+        call_usage[field_name]
+        for call_usage in usage_log
+        if _is_numeric_usage_value(call_usage.get(field_name))
+    )
 
 
 def write_usage_report(usage_log, turn_actions):
-    totals = {}
-    for call_usage in usage_log:
-        for field_name in call_usage:
-            totals.setdefault(field_name, 0)
-    for field_name in totals:
-        totals[field_name] = _sum_usage_field(usage_log, field_name)
+    # Only aggregate fields that are numeric (int/float, not bool) on at
+    # least one call. Nested dict/list fields (e.g. server_tool_use) and any
+    # null/string/bool fields are left out of totals entirely, but every raw
+    # per-call usage dict below is preserved exactly as the SDK returned it.
+    numeric_field_names = {
+        field_name
+        for call_usage in usage_log
+        for field_name, value in call_usage.items()
+        if _is_numeric_usage_value(value)
+    }
+    totals = {
+        field_name: _sum_usage_field(usage_log, field_name)
+        for field_name in sorted(numeric_field_names)
+    }
 
     report = {
         "run_timestamp": datetime.now(timezone.utc).isoformat(),
