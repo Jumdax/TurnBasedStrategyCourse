@@ -77,3 +77,9 @@ Britt_Gray_Assignment_05_Goal_Oriented_Coding_Agent.zip
 
 # Stray repo-root Burst WebGL intermediate output (build byproduct, not source)
 /Data/
+
+# macOS Finder metadata
+.DS_Store
+
+# Assignment 10 local pipeline-run recording (not part of the submitted repo content)
+assignment_10/video/
