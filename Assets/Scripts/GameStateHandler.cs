@@ -25,6 +25,7 @@ public class GameStateHandler : MonoBehaviour
     [SerializeField] private GameObject outcomePanel;
     [SerializeField] private TextMeshProUGUI outcomeText;
     [SerializeField] private Button restartButton;
+    [SerializeField] private Button exitToTitleButton;
 
     private bool gameEnded;
 
@@ -45,6 +46,11 @@ public class GameStateHandler : MonoBehaviour
         {
             restartButton.onClick.AddListener(RestartGame);
         }
+
+        if (exitToTitleButton != null)
+        {
+            exitToTitleButton.onClick.AddListener(RestartGame);
+        }
     }
 
     private void OnDisable()
@@ -55,6 +61,11 @@ public class GameStateHandler : MonoBehaviour
         if (restartButton != null)
         {
             restartButton.onClick.RemoveListener(RestartGame);
+        }
+
+        if (exitToTitleButton != null)
+        {
+            exitToTitleButton.onClick.RemoveListener(RestartGame);
         }
     }
 

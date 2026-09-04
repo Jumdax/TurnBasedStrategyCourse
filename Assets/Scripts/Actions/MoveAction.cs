@@ -30,12 +30,13 @@ public class MoveAction : BaseAction
         if (Vector3.Distance(transform.position, targetPosition) > stoppingDistance)
         {
             float moveSpeed = 4f;
-            transform.position += moveDirection * moveSpeed * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
         } else
         {
             currentPositionIndex++;
             if (currentPositionIndex >= positionList.Count)
             {
+                transform.position = targetPosition;
                 OnStopMoving?.Invoke(this,EventArgs.Empty);
                 ActionComplete();
             }
