@@ -9,6 +9,7 @@ public class UnitAnimator : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private Transform bulletProjectilePrefab;
     [SerializeField] private Transform shootPointTransform;
+    [SerializeField] private Transform smiteFireVfxPrefab;
 
     private void Awake()
     {
@@ -25,6 +26,10 @@ public class UnitAnimator : MonoBehaviour
         {
             meleeAttackAction.OnMeleeAttack += MeleeAttackAction_OnMeleeAttack;
         }
+        if (TryGetComponent<SmiteAction>(out SmiteAction smiteAction))
+        {
+            smiteAction.OnSmite += SmiteAction_OnSmite;
+        }
     }
 
     private void MoveAction_OnStartMoving(object sender, EventArgs e)
@@ -38,6 +43,14 @@ public class UnitAnimator : MonoBehaviour
     private void MeleeAttackAction_OnMeleeAttack(object sender, EventArgs e)
     {
         animator.SetTrigger("Melee");
+    }
+    private void SmiteAction_OnSmite(object sender, SmiteAction.OnSmiteEventArgs e)
+    {
+        Vector3 targetPosition = e.targetUnit.GetWorldPosition();
+
+        Transform smiteFireVfxInstance = Instantiate(smiteFireVfxPrefab, targetPosition, Quaternion.identity);
+
+        Destroy(smiteFireVfxInstance.gameObject, 1.5f);
     }
     private void ShootAction_OnShoot(object sender, ShootAction.OnShootEventArgs e)
     {

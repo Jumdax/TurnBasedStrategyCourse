@@ -730,6 +730,8 @@ MonoBehaviour:
   bulletProjectilePrefab: {fileID: 6823831147824739482, guid: ad22cd460f5354b80b4c77d159782119,
     type: 3}
   shootPointTransform: {fileID: 2931441620694534112}
+  smiteFireVfxPrefab: {fileID: 4193795167831444099, guid: 08408fa859f7442aad290979b16baec0,
+    type: 3}
 --- !u!114 &484946454866902496
 MonoBehaviour:
   m_ObjectHideFlags: 0
