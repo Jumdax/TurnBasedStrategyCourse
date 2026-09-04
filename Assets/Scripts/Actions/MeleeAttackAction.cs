@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class MeleeAttackAction : BaseAction
 {
+    // Mirrors the existing ShootAction.OnShoot pattern - fired once when the
+    // attack begins (not every frame) so UnitAnimator can trigger the shared
+    // Melee Attack animation. No event-args payload is needed since, unlike
+    // ShootAction, nothing downstream currently needs the target/attacker.
+    public event EventHandler OnMeleeAttack;
+
     private enum State
     {
         Attacking,
@@ -140,6 +146,9 @@ public class MeleeAttackAction : BaseAction
         stateTimer = attackingStateTime;
 
         canDealDamage = true;
+
+        OnMeleeAttack?.Invoke(this, EventArgs.Empty);
+
         ActionStart(onActionComplete);
     }
 

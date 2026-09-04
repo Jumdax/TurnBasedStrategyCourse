@@ -21,6 +21,10 @@ public class UnitAnimator : MonoBehaviour
         {
             shootAction.OnShoot += ShootAction_OnShoot;
         }
+        if (TryGetComponent<MeleeAttackAction>(out MeleeAttackAction meleeAttackAction))
+        {
+            meleeAttackAction.OnMeleeAttack += MeleeAttackAction_OnMeleeAttack;
+        }
     }
 
     private void MoveAction_OnStartMoving(object sender, EventArgs e)
@@ -30,6 +34,10 @@ public class UnitAnimator : MonoBehaviour
     private void MoveAction_OnStopMoving(object sender, EventArgs e)
     {
         animator.SetBool("IsWalking", false);
+    }
+    private void MeleeAttackAction_OnMeleeAttack(object sender, EventArgs e)
+    {
+        animator.SetTrigger("Melee");
     }
     private void ShootAction_OnShoot(object sender, ShootAction.OnShootEventArgs e)
     {
